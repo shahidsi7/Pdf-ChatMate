@@ -64,7 +64,7 @@
         spec:
           containers:
             - name: pdfchatmate
-              image: username_docker_hub/image_name:version_tag        # change your docker image name here
+              image: username_docker_hub/image_name:tag_version        # change your docker image name here
               imagePullPolicy: Always
               ports:
                 - containerPort: 8080
