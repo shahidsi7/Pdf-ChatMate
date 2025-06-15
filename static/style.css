@@ -1,0 +1,336 @@
+/* style.css */
+
+/* style.css */
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top for better content flow */
+    height: 100vh; /* Make body take full viewport height */
+    overflow: hidden; /* Prevent body scroll, all scrolling handled by inner elements */
+    padding: 20px; /* Add padding to the body to give space around the main container */
+}
+
+/* Custom scrollbar for Webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+.main-container {
+    display: flex;
+    width: 100%; /* Make it take full available width */
+    height: calc(100vh - 40px); /* Fixed height to fill the remaining viewport height after body padding */
+    margin: 0; /* Remove margin as body padding handles spacing */
+    background-color: #f0f4f8;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Hide overflow from rounded corners and prevent main container scroll */
+}
+
+.left-panel {
+    flex: 1; /* Left panel takes 1 part of the flexible space */
+    padding: 20px;
+    background-color: #ffffff;
+    border-right: 1px solid #e2e8f0; /* Separator between panels */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 300px; /* Adjusted minimum width for left panel to ensure readability */
+    height: 100%; /* Make left panel take full height of main-container */
+    overflow: hidden; /* Prevent left panel from scrolling, inner elements will scroll */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.right-panel {
+    flex: 2; /* Right panel takes 2 parts of the flexible space (making it 2/3 of total) */
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-width: 600px; /* Adjusted minimum width for right panel to ensure usability */
+    height: 100%; /* Make right panel take full height of main-container */
+    overflow: hidden; /* Prevent right panel from scrolling, inner elements will scroll */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+/* PDF Output Section */
+#pdfOutput {
+    flex-grow: 1; /* Allows it to take available space */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allow this section to scroll if its content overflows */
+    padding-right: 10px; /* Space for scrollbar */
+}
+
+#summaryOutput {
+    background-color: #e0f2fe; /* Light blue for summary */
+    border: 1px solid #90cdf4;
+    color: #2b6cb0;
+    padding: 15px; /* Added padding for better appearance */
+    border-radius: 8px; /* Rounded corners */
+    flex-shrink: 0; /* Prevent summary from shrinking */
+}
+
+#summaryContent ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+#summaryContent li {
+    margin-bottom: 5px;
+}
+
+.image-content-scrollable {
+    overflow-y: auto; /* Still keep this for internal image scrolling if many images */
+    padding-right: 10px; /* Space for scrollbar */
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: #f8fafc; /* Lighter background for content areas */
+    padding: 15px;
+    border: 1px solid #cbd5e0;
+    flex-grow: 1; /* Allow images section to grow */
+    min-height: 100px; /* Ensure a minimum height so it doesn't collapse */
+}
+
+#extractedImagesOutput img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #e2e8f0;
+    object-fit: contain; /* Ensure images fit within their container without cropping */
+    cursor: pointer; /* Indicate that images are clickable */
+}
+
+/* Chat Interface Styling */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Take full height of right panel */
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners and contains internal scroll */
+    background-color: #fdfdfe;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.chat-header {
+    background-color: #edf2f7;
+    padding: 15px 20px;
+    border-bottom: 1px solid #cbd5e0;
+    text-align: center;
+    color: #2d3748;
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.chat-history {
+    flex-grow: 1; /* Allows chat history to fill available space */
+    padding: 20px;
+    overflow-y: auto; /* This is the key for chat history scrolling */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 150px; /* Ensure chat history is always visible */
+    flex-shrink: 1;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    word-wrap: break-word;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #3b82f6; /* Blue for user messages */
+    color: white;
+    border-bottom-right-radius: 2px; /* Pointed corner */
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: #e2e8f0; /* Light gray for bot messages */
+    color: #2d3748;
+    border-bottom-left-radius: 2px; /* Pointed corner */
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #cbd5e0;
+    background-color: #edf2f7;
+    flex-shrink: 0; /* Prevent input area from shrinking */
+}
+
+.chat-input-area input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #cbd5e0;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+.chat-input-area button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Image Modal Styles */
+.image-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other content */
+    opacity: 0; /* Start hidden */
+    visibility: hidden; /* Start hidden */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-modal-content {
+    /* This will now just be a flex container for the wrapper, no background/padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Keep relative for potential future absolute children */
+    /* Its dimensions will be dictated by the image-wrapper */
+    max-width: 90vw; /* Allow the overall modal area to be large */
+    max-height: 90vh; /* Allow the overall modal area to be large */
+}
+
+.image-wrapper { /* This is the white box with padding and shadow */
+    position: relative; /* Essential for positioning the close button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* White background for the box */
+    padding: 20px; /* Padding inside the white box */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* Set fixed smaller dimensions for the wrapper itself */
+    width: 300px; /* Fixed width for the image box */
+    height: 300px; /* Fixed height for the image box */
+    box-sizing: border-box; /* Ensure padding is included in the fixed width/height */
+}
+
+.image-modal-content img { /* The image inside the wrapper */
+    max-width: 100%; /* Image scales to fit within its parent (image-wrapper) */
+    max-height: 100%; /* Image scales to fit within its parent (image-wrapper) */
+    object-fit: contain; /* Maintain aspect ratio and fit fully */
+    border-radius: 8px;
+    border: 2px solid #cbd5e0; /* Border for the image itself */
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 0px; /* Position relative to the top of the image-wrapper */
+    right: 0px; /* Position relative to the right of the image-wrapper */
+    transform: translate(50%, -50%); /* Shift by half its own width/height to center on the corner */
+    background: #ffffff; /* White background for a small circle */
+    border-radius: 50%; /* Make it circular */
+    width: 24px; /* Smaller fixed width */
+    height: 24px; /* Smaller fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem; /* Smaller 'X' font size */
+    color: #333; /* Dark color for visibility */
+    cursor: pointer;
+    line-height: 1;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Subtle shadow for the button */
+    z-index: 1001; /* Ensure it's above the image and wrapper */
+}
+
+.image-modal-close:hover {
+    background-color: #ff0000; /* Red background on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .main-container {
+        flex-direction: column; /* Stack panels vertically on smaller screens */
+        margin: 10px;
+        min-height: unset; /* Allow height to adjust */
+        height: unset; /* Remove fixed height when stacked */
+    }
+
+    body {
+        overflow-y: auto; /* Allow body to scroll when panels are stacked */
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    .left-panel, .right-panel {
+        flex: unset; /* Remove flex ratio when stacked */
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0; /* Add bottom border when stacked */
+        min-width: unset; /* Remove min-width for stacking */
+        width: 100%; /* Take full width */
+        max-height: unset; /* Remove max-height for stacking */
+        height: unset; /* Remove fixed height when stacked */
+        overflow-y: visible; /* Allow content to push down when stacked */
+    }
+
+    .left-panel {
+        padding-bottom: 0; /* Adjust padding when stacked */
+    }
+
+    .right-panel {
+        padding-top: 0; /* Adjust padding when stacked */
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        margin: 5px;
+    }
+    .left-panel, .right-panel {
+        padding: 15px;
+    }
+    .chat-header h2 {
+        font-size: 1.5rem;
+    }
+    .chat-input-area {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .chat-input-area button {
+        margin-left: 0;
+        width: 100%;
+    }
+}

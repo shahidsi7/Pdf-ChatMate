@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# PDF uploads and logs (don't need to be in container)
+uploads/
+*.log
+
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+
+# Git and version control
+.git/
+.gitignore
+
+# Docker files
+Dockerfile*
+.dockerignore

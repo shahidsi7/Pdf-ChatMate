@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF AI Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- CHANGE: Use url_for for static CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-gray-100 font-inter antialiased">
+
+    <div id="apiKeyModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full mx-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Enter Your Gemini API Key</h2>
+            <p class="text-gray-600 mb-6 text-center">
+                To use the PDF AI Assistant, please provide your Gemini API key.
+                You can obtain one from <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-blue-600 hover:underline">Google AI Studio</a>.
+            </p>
+            <input type="password" id="geminiApiKeyInput" placeholder="Your Gemini API Key"
+                   class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="submitApiKeyButton" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg
+                                                     shadow-lg transform transition duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-2
+                                                     focus:ring-blue-500 focus:ring-opacity-50 text-base">
+                Start Chatting
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container hidden"> <div class="left-panel">
+            <div class="p-6 bg-white rounded-lg shadow-md mb-4">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Upload a PDF File</h2>
+                <div class="flex items-center gap-3 mb-4">
+                    <input type="file" id="fileInput" accept="application/pdf" class="flex-grow block text-sm text-gray-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-full file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-blue-50 file:text-blue-700
+                        hover:file:bg-blue-100 cursor-pointer" />
+                    <button id="uploadButton" class="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg
+                        shadow-lg transform transition duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-2
+                        focus:ring-blue-500 focus:ring-opacity-50 text-base">
+                        Upload
+                    </button>
+                </div>
+            </div>
+
+            <div id="pdfOutput" class="p-6 bg-white rounded-lg shadow-md flex-grow flex flex-col">
+                <h3 class="text-xl font-bold text-gray-800 mb-3">PDF Summary & Images</h3>
+                
+                <div id="summaryOutput" class="mb-4 p-3 bg-blue-50 rounded-md text-blue-800">
+                    <p class="font-semibold mb-2">Overall Summary:</p>
+                    <div id="summaryContent" class="text-gray-700">
+                        <p>Upload a PDF to get a summary and extracted content here.</p>
+                    </div>
+                </div>
+
+                <div id="extractedImagesOutput" class="mt-4 flex-grow flex flex-col">
+                    <h4 class="text-lg font-semibold text-gray-700 mb-2">Extracted Images:</h4>
+                    <div class="image-content-scrollable flex flex-wrap justify-center gap-4 p-3 bg-gray-50 rounded-md border border-gray-200 flex-grow">
+                        <p class="text-gray-600 italic">No images extracted yet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2 class="text-2xl font-bold text-gray-800">PDF CHATMATE</h2>
+                </div>
+                <div id="chatHistory" class="chat-history">
+                    <div class="message bot-message">
+                        <p>Hello! Upload a PDF, and I can summarize it for you. Then, feel free to ask me questions about its content.</p>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Ask a question about the PDF..."
+                        class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="sendChatButton" class="ml-3 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-lg
+                        shadow-md transform transition duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-2
+                        focus:ring-blue-500 focus:ring-opacity-50">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="imageModal" class="image-modal-overlay">
+        <div class="image-modal-content">
+            <div class="image-wrapper"> <img id="modalImage" src="" alt="Expanded PDF Image">
+                <button id="closeModal" class="image-modal-close">&times;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHANGE: Use url_for for static JavaScript -->
+    <script src="{{ url_for('static', filename='Button_Upload.js') }}"></script>
+</body>
+</html>
