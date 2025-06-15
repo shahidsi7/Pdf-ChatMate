@@ -1,4 +1,5 @@
 # Pdf-ChatMate :
+PDF-ChatMate is an end-to-end AI web application that allows users to upload PDF documents, extract their content (text and images), generate smart summaries, and interact with the content through a natural language chat interface powered by Gemini AI.
 
 1. Creating Python environment : python -m venv .venv
 
