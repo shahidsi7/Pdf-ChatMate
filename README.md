@@ -34,6 +34,11 @@ PDF-ChatMate is an end-to-end AI web application that allows users to upload PDF
 ├── templates/
 │   └── index.html
 │
+├── static/
+│   └── style.css
+│   └── Button_Upload.js
+│
+
 
 6. Checking if project running locally or not : waitress-serve --host 127.0.0.1 app:app
 
